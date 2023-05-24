@@ -11,14 +11,6 @@ const tourSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    address: {
-      type: String,
-      required: true,
-    },
-    distance: {
-      type: Number,
-      required: true,
-    },
     photo: {
       type: String,
     },
@@ -26,7 +18,7 @@ const tourSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    price: {
+    pricePerHead: {
       type: Number,
       required: true,
     },
@@ -34,22 +26,20 @@ const tourSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    HotelName: {
+    modeOfTransport: {
       type: String,
       // required: true,
     },
-
+    featured: {
+      type: Boolean,
+      default: false,
+    },
     reviews: [
       {
         type: mongoose.Types.ObjectId,
         ref: "Review",
       },
     ],
-
-    featured: {
-      type: Boolean,
-      default: false,
-    },
   },
   { timestamps: true }
 );

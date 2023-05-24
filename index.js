@@ -10,7 +10,7 @@ import tourRoutes from "./routes/tours.js";
 import userRoutes from "./routes/users.js";
 import reviewRoutes from "./routes/reviews.js";
 import bookingRoutes from "./routes/booking.js";
-import vehicleRoutes from "./routes/vehicles.js";
+import hotelRoutes from "./routes/hotel.js";
 
 dotenv.config();
 const app = express();
@@ -43,7 +43,7 @@ app.use("/api/v1/tours", tourRoutes);
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/review", reviewRoutes);
 app.use("/api/v1/booking", bookingRoutes);
-app.use("/api/v1/vehicle", vehicleRoutes);
+app.use("/api/v1/hotel", hotelRoutes);
 
 app.listen(port, () => {
   connectT();

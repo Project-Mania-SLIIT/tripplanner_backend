@@ -3,21 +3,16 @@ import mongoose from "mongoose";
 const bookingSchema = new mongoose.Schema(
   {
     tourId: {
-      type: String,
+      type: mongoose.Types.ObjectId,
+      ref: "Tour",
+    },
+    hotelId: {
+      type: mongoose.Types.ObjectId,
+      ref: "Hotel",
     },
     userId: {
-      type: String,
-    },
-    tourName: {
-      type: String,
-      required: true,
-    },
-    fullName: {
-      type: String,
-      required: true,
-    },
-    HotelName: {
-      type: String,
+      type: mongoose.Types.ObjectId,
+      ref: "User",
     },
     guestSize: {
       type: Number,
@@ -34,15 +29,6 @@ const bookingSchema = new mongoose.Schema(
     status: {
       type: String,
       default: "pending",
-    },
-    guideId: {
-      type: String,
-    },
-    guideName: {
-      type: String,
-    },
-    vehicleId: {
-      type: String,
     },
     endDate: {
       type: Date,
