@@ -1,22 +1,27 @@
 import Hotel from "../models/Hotel.js";
 
 export const createHotel = async (req, res) => {
-  const newHotel = new Hotel(req.body);
-  console.log(newHotel);
   try {
+    const newHotel = new Hotel(req.body);
+    console.log(newHotel);
     const savedHotel = await newHotel.save();
+    
     res.status(200).json({
       success: true,
       message: "Successfully created a new Hotel",
       data: savedHotel,
     });
   } catch (err) {
+    console.error(err); // Log the error for debugging purposes
+    
     res.status(500).json({
       success: false,
       message: "Unable to create Hotel",
     });
   }
 };
+
+
 export const updateHotel = async (req, res) => {
   try {
     const hotel = await Hotel.findOneAndUpdate(
@@ -25,7 +30,7 @@ export const updateHotel = async (req, res) => {
       },
       {
         name: req.body.name,
-        descrition: req.body.descrition,
+        description: req.body.description,
         city: req.body.city,
         roomCount: req.body.roomCount,
         image: req.body.image,
