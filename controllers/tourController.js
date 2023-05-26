@@ -100,7 +100,7 @@ export const getAllTour = async (req, res) => {
 };
 
 export const getTourLatest = async (req, res) => {
-  const tour = await Blog.find().sort({ createdAt: -1 }).limit(5);
+  const tour = await Tour.find().sort({ createdAt: -1 }).limit(5);
   res.send(tour);
 };
 
