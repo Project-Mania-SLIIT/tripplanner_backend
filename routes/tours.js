@@ -21,13 +21,13 @@ const router = express.Router();
 router.post("/", createTour);
 
 //update tour
-router.put("/update", updatedTour);
+router.put("/:id", updatedTour);
 
 //Delete tour
-router.post("/delete", deleteTour);
+router.delete("/:id", deleteTour);
 
 //get sigle tour
-router.get("/:id", getSingleTour);
+router.get("/single/:id", getSingleTour);
 
 //get all tours
 router.get("/", getAllTour);
