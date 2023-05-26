@@ -3,12 +3,20 @@ import {
   createReview,
   deleteReview,
   updatedReview,
+  allReviews,
+  hotelReviews,
+  userReviews,
+  oneReview
 } from "../controllers/reviewController.js";
-import { verifyUser } from "../utils/verifyToken.js";
 const router = express.Router();
 
-router.post("/update", updatedReview);
-router.post("/delete", deleteReview);
-router.post("/:tourId", verifyUser, createReview);
+
+router.get("/getone/:id", oneReview);
+router.get("/getall", allReviews);
+router.get("/getuse/:id", userReviews);
+router.get("/gethot/:id", hotelReviews);
+router.put("/update/:id", updatedReview);
+router.delete("/delete/:id", deleteReview);
+router.post("/add", createReview);
 
 export default router;
