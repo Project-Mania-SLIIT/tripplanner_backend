@@ -83,6 +83,6 @@ export const getSingleHotel = async (req, res) => {
 };
 
 export const getAllHotels = async (req, res) => {
-  const hotels = await Hotel.findOne({});
+  const hotels = await Hotel.find({});
   res.send(hotels);
 };
