@@ -5,6 +5,7 @@ import {
   deleteBlog,
   getSingleBlog,
   getAllBlogs,
+  getlatest,
 } from "../controllers/blogController.js";
 const router = express.Router();
 
@@ -19,6 +20,6 @@ router.put("/update/:id", updateBlog);
 
 router.get("/", getAllBlogs);
 
-
+router.get("/latest", getlatest);
 
 export default router;

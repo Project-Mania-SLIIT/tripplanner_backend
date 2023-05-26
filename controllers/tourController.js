@@ -2,14 +2,14 @@ import Tour from "../models/Tour.js";
 
 export const createTour = async (req, res) => {
   const tour = new Tour({
-    userId:req.body.userId,
+    userId: req.body.userId,
     title: req.body.title,
     city: req.body.city,
     desc: req.body.desc,
-    photo:req.body.image,
+    photo: req.body.image,
     pricePerHead: req.body.pricePerHead,
     maxGroupSize: req.body.maxGroupSize,
-    modeOfTransport : req.body.modeOfTransport,
+    modeOfTransport: req.body.modeOfTransport,
   });
   const details = await tour.save();
 
@@ -31,8 +31,8 @@ export const updatedTour = async (req, res) => {
         desc: req.body.desc,
         pricePerHead: req.body.pricePerHead,
         maxGroupSize: req.body.maxGroupSize,
-        modeOfTransport : req.body.modeOfTransport,
-        photo:req.body.image,
+        modeOfTransport: req.body.modeOfTransport,
+        photo: req.body.image,
       },
       {
         new: true,
@@ -80,10 +80,10 @@ export const getAllTour = async (req, res) => {
   const page = parseInt(req.query.page);
 
   try {
-    const tour = await Tour.find({})
-      // .populate("reviews")
-      // .skip(page * 8)
-      // .limit(8);
+    const tour = await Tour.find({});
+    // .populate("reviews")
+    // .skip(page * 8)
+    // .limit(8);
 
     res.status(200).json({
       success: true,
@@ -97,6 +97,11 @@ export const getAllTour = async (req, res) => {
       message: "Unable to find tours",
     });
   }
+};
+
+export const getTourLatest = async (req, res) => {
+  const tour = await Blog.find().sort({ createdAt: -1 }).limit(5);
+  res.send(tour);
 };
 
 // export const getAllTourHotel = async (req, res) => {

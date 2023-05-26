@@ -85,3 +85,8 @@ export const getAllHotels = async (req, res) => {
   const hotels = await Hotel.find();
   res.send(hotels);
 };
+
+export const getHotelLatest = async (req, res) => {
+  const hotels = await Blog.find().sort({ createdAt: -1 }).limit(5);
+  res.send(hotels);
+}

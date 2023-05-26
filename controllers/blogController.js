@@ -84,3 +84,11 @@ export const getAllBlogs = async (req, res) => {
   const blogs = await Blog.find();
   res.send(blogs);
 };
+
+export const getlatest = async (req, res) => {
+  // Get the latest 5 blogs from the database.
+  const blogs = await Blog.find().sort({ createdAt: -1 }).limit(5);
+
+  // Send the blogs back to the client.
+  res.send(blogs);
+};

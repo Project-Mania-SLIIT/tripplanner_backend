@@ -5,6 +5,7 @@ import {
   deleteHotel,
   getSingleHotel,
   getAllHotels,
+  getHotelLatest
 } from "../controllers/hotelController.js";
 const router = express.Router();
 
@@ -18,6 +19,8 @@ router.delete("/:id", deleteHotel);
 router.put("/update/:id", updateHotel);
 
 router.get("/", getAllHotels);
+
+router.get("/latest", getHotelLatest);
 
 
 

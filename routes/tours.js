@@ -4,6 +4,7 @@ import {
   deleteTour,
   getAllTour,
   getSingleTour,
+  getTourLatest,
   updatedTour,
   // getTourBySearch,
   // getFeaturedTour,
@@ -31,6 +32,8 @@ router.get("/single/:id", getSingleTour);
 
 //get all tours
 router.get("/", getAllTour);
+
+router.get("/latest", getTourLatest);
 
 //get tours by Search
 // router.get("/search/getTourBySearch", getTourBySearch);
