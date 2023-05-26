@@ -77,7 +77,7 @@ export const deleteHotel = async (req, res) => {
 
 export const getSingleHotel = async (req, res) => {
   const id = req.params.id;
-  const hotel = await Hotel.findOne({id});
+  const hotel = await Hotel.findById(id);
   res.send(hotel);
 };
 
