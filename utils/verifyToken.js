@@ -1,20 +1,18 @@
 import jwt from 'jsonwebtoken'
 
 export const verifyToken = (req, res, next) => {
-    const token = req.cookies.accessToken
+    if(req.headers.authorization && req.headers.authorization.startsWith('bearer'))
+    {
+        const token = req.headers.authorization.split(' ')[1];
+        if(token==null) res.sendStatus(401)
+        jwt.verify(token,process.env.JWT_SECRET_KEY,(err,user)=>{
+            if(err) res.sendStatus(403)
+            req.user = user;
+            next();
+        });
 
-    if(!token){
-        return res.status(401).json({success: false, message: "your are not autherirzed"})
-    }
-
-    //if token is exist then verify the token
-    jwt.verify(token, process.env.JWT_SECRET_KEY, (err, user) => {
-        if(err){
-            return res.status(401).json({success: false, message: "Token is invalid"})
-        }
-        req.user = user
-        next()
-    })
+    }else
+    res.sendStatus(401)
 }
 
 export const verifyUser = (req, res, next) => {

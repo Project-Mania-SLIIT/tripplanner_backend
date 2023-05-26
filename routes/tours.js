@@ -12,20 +12,20 @@ import {
   // getAllTourHotel,
 } from "../controllers/tourController.js";
 
-import { verifyHotel } from "../utils/verifyToken.js";
+import { verifyToken } from "../utils/verifyToken.js";
 
 const router = express.Router();
 
 // router.get("/hotel", getAllTourHotel);
 
 //create new tour
-router.post("/", createTour);
+router.post("/",verifyToken, createTour);
 
 //update tour
-router.put("/:id", updatedTour);
+router.put("/:id",verifyToken, updatedTour);
 
 //Delete tour
-router.delete("/:id", deleteTour);
+router.delete("/:id",verifyToken, deleteTour);
 
 //get sigle tour
 router.get("/single/:id", getSingleTour);
