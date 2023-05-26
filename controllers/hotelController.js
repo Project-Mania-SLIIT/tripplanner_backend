@@ -77,11 +77,11 @@ export const deleteHotel = async (req, res) => {
 
 export const getSingleHotel = async (req, res) => {
   const id = req.params.id;
-  const hotel = await Hotel.findById(id);
+  const hotel = await Hotel.findOne({id});
   res.send(hotel);
 };
 
 export const getAllHotels = async (req, res) => {
-  const hotels = await Hotel.find({});
+  const hotels = await Hotel.find();
   res.send(hotels);
 };
