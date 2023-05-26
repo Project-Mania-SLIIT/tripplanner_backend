@@ -1,6 +1,7 @@
 import Hotel from "../models/Hotel.js";
 
 export const createHotel = async (req, res) => {
+  console.log(req.body)
   const newHotel = new Hotel(req.body);
   console.log(newHotel);
   try {
@@ -73,11 +74,11 @@ export const deleteHotel = async (req, res) => {
 
 export const getSingleHotel = async (req, res) => {
   const id = req.params.id;
-  const hotel = await Hotel.findOne(id);
+  const hotel = await Hotel.findOne({id});
   res.send(hotel);
 };
 
 export const getAllHotels = async (req, res) => {
-  const hotels = await Hotel.findOne({});
+  const hotels = await Hotel.find();
   res.send(hotels);
 };
