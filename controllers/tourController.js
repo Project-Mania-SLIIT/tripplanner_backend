@@ -2,9 +2,11 @@ import Tour from "../models/Tour.js";
 
 export const createTour = async (req, res) => {
   const tour = new Tour({
+    userId:req.body.userId,
     title: req.body.title,
     city: req.body.city,
     desc: req.body.desc,
+    photo:req.body.image,
     pricePerHead: req.body.pricePerHead,
     maxGroupSize: req.body.maxGroupSize,
     modeOfTransport : req.body.modeOfTransport,
@@ -21,15 +23,16 @@ export const updatedTour = async (req, res) => {
   try {
     const tour = await Tour.findOneAndUpdate(
       {
-        _id: req.body.id,
+        _id: req.params.id,
       },
       {
         title: req.body.title,
         city: req.body.city,
         desc: req.body.desc,
-        pricePerHead: req.body.price,
+        pricePerHead: req.body.pricePerHead,
         maxGroupSize: req.body.maxGroupSize,
         modeOfTransport : req.body.modeOfTransport,
+        photo:req.body.image,
       },
       {
         new: true,
@@ -53,7 +56,7 @@ export const updatedTour = async (req, res) => {
 };
 
 export const deleteTour = async (req, res) => {
-  const tour = await Tour.findOneAndDelete({ _id: req.body.id });
+  const tour = await Tour.findOneAndDelete({ _id: req.params.id });
   res.send(tour);
 };
 
