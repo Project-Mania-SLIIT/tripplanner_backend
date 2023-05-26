@@ -16,7 +16,7 @@ router.post("/", createBlog);
 
 router.delete("/:id", deleteBlog);
 
-router.put("/update/:id", updateBlog);
+router.put("/:id", updateBlog);
 
 router.get("/", getAllBlogs);
 
