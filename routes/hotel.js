@@ -9,14 +9,14 @@ import {
 } from "../controllers/hotelController.js";
 const router = express.Router();
 
-import { verifyVehicleDriver } from "../utils/verifyToken.js";
+import { verifyToken } from "../utils/verifyToken.js";
 router.get("/single/:id", getSingleHotel);
 
-router.post("/", createHotel);
+router.post("/",verifyToken, createHotel);
 
-router.delete("/:id", deleteHotel);
+router.delete("/:id",verifyToken, deleteHotel);
 
-router.put("/update/:id", updateHotel);
+router.put("/update/:id",verifyToken, updateHotel);
 
 router.get("/", getAllHotels);
 
