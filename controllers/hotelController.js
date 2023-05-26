@@ -1,32 +1,36 @@
 import Hotel from "../models/Hotel.js";
 
 export const createHotel = async (req, res) => {
-  console.log(req.body)
-  const newHotel = new Hotel(req.body);
-  console.log(newHotel);
   try {
+    const newHotel = new Hotel(req.body);
+    console.log(newHotel);
     const savedHotel = await newHotel.save();
+
     res.status(200).json({
       success: true,
       message: "Successfully created a new Hotel",
       data: savedHotel,
     });
   } catch (err) {
+    console.error(err); // Log the error for debugging purposes
+
     res.status(500).json({
       success: false,
       message: "Unable to create Hotel",
     });
   }
 };
+
 export const updateHotel = async (req, res) => {
   try {
-    const hotel = await Hotel.findOneAndUpdate(
+    const id = req.params.id;
+    const hotel = await Hotel.findByIdAndUpdate(
       {
-        _id: req.body.id,
+        _id: id,
       },
       {
         name: req.body.name,
-        descrition: req.body.descrition,
+        description: req.body.description,
         city: req.body.city,
         roomCount: req.body.roomCount,
         image: req.body.image,
@@ -70,7 +74,6 @@ export const deleteHotel = async (req, res) => {
     });
   }
 };
-
 
 export const getSingleHotel = async (req, res) => {
   const id = req.params.id;

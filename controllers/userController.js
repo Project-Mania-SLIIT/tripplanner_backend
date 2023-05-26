@@ -1,36 +1,19 @@
 import User from "../models/User.js";
 
-export const createUser = async (req, res) => {
-  const newUser = new User(req.body);
-
-  try {
-    const savedUser = await newUser.save();
-    res.status(200).json({
-      success: true,
-      message: "Successfully created a new User",
-      data: savedUser,
-    });
-  } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: "Unable to create User",
-    });
-  }
-};
 
 export const updatedUser = async (req, res) => {
-  console.log(req.body);
   try {
-    const user = await User.findOneAndUpdate(
+    const id = req.params.id;
+    const user = await User.findByIdAndUpdate(
       {
-        _id: req.body._id,
+        _id: id,
       },
       {
         _id: req.body.id,
         username: req.body.username,
         email: req.body.email,
-        hotelname: req.body.hotelname,
-        hotellocation: req.body.hotellocation,
+        photo: req.body.photo,
+        role: req.body.role,
       },
       {
         new: true,
@@ -49,7 +32,7 @@ export const updatedUser = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 };
 
