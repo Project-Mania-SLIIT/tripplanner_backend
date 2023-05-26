@@ -3,19 +3,41 @@ import mongoose from "mongoose";
 const reviewSchema = new mongoose.Schema(
   {
     userId: {
-      type: mongoose.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    reviewText: {
+    hotelId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Hotel",
+    },
+    hotelName: {
+      type: mongoose.Schema.Types.String,
+      ref: "Hotel",
+    },
+    hotelImage: {
+      type: mongoose.Schema.Types.String,
+      ref: "Hotel",
+    },
+    username: {
+      type: mongoose.Schema.Types.String,
+      ref: "User",
+    },
+    feedbackId: {
+      type: String,
+      required: true,
+          unique: true,
+    },
+    rating: {
       type: String,
       required: true,
     },
-    rating: {
+    reviewText: {
+      type: String,
+      required: false,
+    },
+    code: {
       type: Number,
       required: true,
-      min: 0,
-      max: 5,
-      default: 0,
     },
   },
   { timestamps: true }
